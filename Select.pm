@@ -22,6 +22,9 @@ sub new {
 	# Create object.
 	my $self = bless {}, $class;
 
+	# Debug.
+	$self->{'debug'} = 0;
+
 	# Path to images.
 	$self->{'path_to_images'} = undef;
 
@@ -95,6 +98,9 @@ sub create {
 	);
 
 	# Save.
+	if ($self->{'debug'}) {
+		print "Path: $path\n";
+	}
 	my $ret = $new_i->write(
 		'file' => $path,
 		'type' => $suffix,
@@ -170,6 +176,11 @@ Image::Select - Perl class for creating random image.
  Constructor.
 
 =over 8
+
+=item * C<debug>
+
+ Debug mode.
+ Default value is 0.
 
 =item * C<height>
 
