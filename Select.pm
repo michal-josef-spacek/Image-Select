@@ -44,6 +44,9 @@ sub new {
 	$self->{'_images_to_select'} = [
 		File::Find::Rule->file->in($self->{'path_to_images'}),
 	];
+	if (! @{$self->{'_images_to_select'}}) {
+		err 'No images.';
+	}
 	$self->{'_images_index'} = 0;
 
 	# Object.
@@ -203,6 +206,7 @@ Image::Select - Perl class for creating random image.
 =head1 ERRORS
 
  new():
+         No images.
          Suffix '%s' doesn't supported.
          Class::Utils:
                  Unknown parameter '%s'.
