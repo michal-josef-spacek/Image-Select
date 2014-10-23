@@ -1,0 +1,117 @@
+NAME
+    Image::Select - Perl class for creating random image.
+
+SYNOPSIS
+     use Image::Select;
+     my $obj = Image::Select->new(%parameters);
+     my $type = $obj->create($output_path);
+     my ($width, $height) = $obj->sizes($new_width, $new_height);
+     my $type = $obj->type($new_type);
+
+METHODS
+    "new(%parameters)"
+             Constructor.
+
+            *       "height"
+
+                     Height of image.
+                     Default value is 1920.
+
+            *       "path_to_images"
+
+                     Path to images.
+                     Default value is undef.
+
+            *       "type"
+
+                     Image type.
+                     List of supported types: bmp, gif, jpeg, png, pnm, raw, sgi, tga, tiff
+                     Default value is undef.
+
+            *       "width"
+
+                     Width of image.
+                     Default value is 1080.
+
+    "create($path)"
+             Create image.
+             Returns scalar value of supported file type.
+
+    "sizes([$width, $height])"
+             Set/Get image sizes.
+             Returns actual width and height.
+
+    "type([$type])"
+             Set/Get image type.
+             Returns actual type of image.
+
+ERRORS
+     new():
+             No images.
+             Suffix '%s' doesn't supported.
+             Class::Utils:
+                     Unknown parameter '%s'.
+
+     create():
+             Cannot write file to '$path'.
+                     Error, %s
+             No file '%s'.
+             Suffix '%s' doesn't supported.
+
+EXAMPLE
+     # Pragmas.
+     use strict;
+     use warnings;
+
+     # Modules.
+     use File::Spec::Functions qw(catfile);
+     use File::Temp qw(tempfile tempdir);
+     use Image::Select;
+     use Image::Random;
+
+     # Temporary directory to random images.
+     my $tempdir = tempdir(CLEANUP => 1);
+
+     # Create temporary images.
+     my $rand = Image::Random->new;
+     for my $i (1 .. 5) {
+             $rand->create(catfile($tempdir, $i.'.png'));
+     }
+
+     # Object.
+     my $obj = Image::Select->new(
+             'path_to_images' => $tempdir,
+     );
+
+     # Temporary file.
+     my (undef, $temp) = tempfile();
+
+     # Create image.
+     my $type = $obj->create($temp);
+
+     # Print out type.
+     print $type."\n";
+
+     # Unlink file.
+     unlink $temp;
+
+     # Output:
+     # bmp
+
+DEPENDENCIES
+    Class::Utils, Error::Pure, File::Basename, Imager, List::MoreUtils.
+
+SEE ALSO
+    Image::Random.
+
+AUTHOR
+    Michal Špaček <mailto:skim@cpan.org>
+
+    <http://skim.cz>
+
+LICENSE AND COPYRIGHT
+    BSD license.
+
+VERSION
+    0.01
+
