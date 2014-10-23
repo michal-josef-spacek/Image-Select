@@ -59,8 +59,14 @@ sub create {
 
 	# Load next image.
 	my $i = Imager->new;
-	# TODO Check if file exists.
-	$i->read('file' => $self->{'_images_to_select'}->[$self->{'_images_index'}]);
+	if ($self->{'_images_index'} > $#{$self->{'_images_to_select'}}) {
+		$self->{'_images_index'} = 0;
+	}
+	my $file = $self->{'_images_to_select'}->[$self->{'_images_index'}];
+	if (! -r $file) {
+		err "No file '$file'.";
+	}
+	$i->read('file' => $file);
 	$self->{'_images_index'}++;
 
 	# Get type.
@@ -214,6 +220,7 @@ Image::Select - Perl class for creating random image.
  create():
          Cannot write file to '$path'.
                  Error, %s
+         No file '%s'.
          Suffix '%s' doesn't supported.
 
 =head1 EXAMPLE
