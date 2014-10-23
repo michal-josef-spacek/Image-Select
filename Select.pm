@@ -88,12 +88,14 @@ sub create {
 		$suffix = $self->{'type'};
 	}
 
-	# TODO Resize.
-#		'xsize' => $self->{'width'},
-#		'ysize' => $self->{'height'},
+	# Scale.
+	my $new_i = $i->scale(
+		'xpixels' => $self->{'width'},
+		'ypixels' => $self->{'height'},
+	);
 
 	# Save.
-	my $ret = $i->write(
+	my $ret = $new_i->write(
 		'file' => $path,
 		'type' => $suffix,
 	);
