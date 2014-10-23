@@ -45,7 +45,7 @@ sub new {
 
 	# Load images.
 	$self->{'_images_to_select'} = [
-		File::Find::Rule->file->magic(
+		sort File::Find::Rule->file->magic(
 			'image/bmp',
 			'image/gif',
 			'image/jpeg',
