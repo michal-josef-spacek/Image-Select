@@ -99,7 +99,8 @@ EXAMPLE
      # bmp
 
 DEPENDENCIES
-    Class::Utils, Error::Pure, File::Basename, Imager, List::MoreUtils.
+    Class::Utils, Error::Pure, File::Basename, File::Find::Rule,
+    File::Find::Rule::MMagic, Imager, List::MoreUtils.
 
 SEE ALSO
     Image::Random.

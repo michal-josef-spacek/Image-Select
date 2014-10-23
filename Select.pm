@@ -8,7 +8,7 @@ use warnings;
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use File::Basename qw(fileparse);
-use File::Find::Rule;
+use File::Find::Rule qw(:MMagic);
 use Imager;
 use List::MoreUtils qw(none);
 
@@ -45,7 +45,18 @@ sub new {
 
 	# Load images.
 	$self->{'_images_to_select'} = [
-		File::Find::Rule->file->in($self->{'path_to_images'}),
+		File::Find::Rule->file->magic(
+			'image/bmp',
+			'image/gif',
+			'image/jpeg',
+			'image/png',
+			'image/tiff',
+			'image/x-ms-bmp',
+			'image/x-portable-pixmap',
+			# XXX tga?
+			# XXX raw?
+			# XXX sgi?
+		)->in($self->{'path_to_images'}),
 	];
 	if (! @{$self->{'_images_to_select'}}) {
 		err 'No images.';
@@ -282,6 +293,8 @@ Image::Select - Perl class for creating random image.
 L<Class::Utils>,
 L<Error::Pure>,
 L<File::Basename>,
+L<File::Find::Rule>,
+L<File::Find::Rule::MMagic>,
 L<Imager>,
 L<List::MoreUtils>.
 
