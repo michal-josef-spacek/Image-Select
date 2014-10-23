@@ -80,7 +80,11 @@ sub create {
 	if (! -r $file) {
 		err "No file '$file'.";
 	}
-	$i->read('file' => $file);
+	my $ret = $i->read('file' => $file);
+	if (! $ret) {
+		err "Cannot read file '$file'.",
+			'Error', Imager->errstr;
+	}
 	$self->{'_images_index'}++;
 
 	# Get type.
@@ -107,12 +111,16 @@ sub create {
 		'xpixels' => $self->{'width'},
 		'ypixels' => $self->{'height'},
 	);
+	if (! $new_i) {
+		err "Cannot resize image from file '$file'.",
+			'Error', Imager->errstr;
+	}
 
 	# Save.
 	if ($self->{'debug'}) {
 		print "Path: $path\n";
 	}
-	my $ret = $new_i->write(
+	$ret = $new_i->write(
 		'file' => $path,
 		'type' => $suffix,
 	);
@@ -242,6 +250,10 @@ Image::Select - Perl class for creating random image.
                  Unknown parameter '%s'.
 
  create():
+         Cannot read file '%s'.
+                 Error, %s
+         Cannot resize image from file '%s'.
+                 Error, %s
          Cannot write file to '$path'.
                  Error, %s
          No file '%s'.
