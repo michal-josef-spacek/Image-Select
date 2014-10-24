@@ -7,8 +7,8 @@ use warnings;
 # Modules.
 use File::Spec::Functions qw(catfile);
 use File::Temp qw(tempfile tempdir);
-use Image::Select;
 use Image::Random;
+use Image::Select;
 
 # Temporary directory to random images.
 my $tempdir = tempdir(CLEANUP => 1);
