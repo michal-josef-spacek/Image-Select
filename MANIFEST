@@ -16,6 +16,7 @@ MANIFEST			This list of files
 META.yml
 README
 Select.pm
+SIGNATURE
 t/Image-Select/00-use.t
 t/Image-Select/01-version.t
 t/Image-Select/02-pod_coverage.t
