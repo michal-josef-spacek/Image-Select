@@ -167,7 +167,7 @@ sub _check_type {
 	if (none { $type eq $_ } ('bmp', 'gif', 'jpeg', 'png',
 		'pnm', 'raw', 'sgi', 'tga', 'tiff')) {
 
-		err "Suffix '$type' doesn't supported.";
+		err "Image type '$type' doesn't supported.";
 	}
 
 	return;
@@ -257,7 +257,7 @@ Image::Select - Perl class for creating random image.
 
  new():
          No images.
-         Suffix '%s' doesn't supported.
+         Image type '%s' doesn't supported.
          Class::Utils:
                  Unknown parameter '%s'.
 
@@ -269,7 +269,7 @@ Image::Select - Perl class for creating random image.
          Cannot write file to '$path'.
                  Error, %s
          No file '%s'.
-         Suffix '%s' doesn't supported.
+         Image type '%s' doesn't supported.
 
 =head1 EXAMPLE1
 

@@ -58,7 +58,7 @@ METHODS
 ERRORS
      new():
              No images.
-             Suffix '%s' doesn't supported.
+             Image type '%s' doesn't supported.
              Class::Utils:
                      Unknown parameter '%s'.
 
@@ -70,7 +70,7 @@ ERRORS
              Cannot write file to '$path'.
                      Error, %s
              No file '%s'.
-             Suffix '%s' doesn't supported.
+             Image type '%s' doesn't supported.
 
 EXAMPLE1
      # Pragmas.
