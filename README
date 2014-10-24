@@ -80,8 +80,8 @@ EXAMPLE1
      # Modules.
      use File::Spec::Functions qw(catfile);
      use File::Temp qw(tempfile tempdir);
-     use Image::Select;
      use Image::Random;
+     use Image::Select;
 
      # Temporary directory to random images.
      my $tempdir = tempdir(CLEANUP => 1);
@@ -120,8 +120,8 @@ EXAMPLE2
      # Modules.
      use File::Spec::Functions qw(catfile);
      use File::Temp qw(tempfile tempdir);
-     use Image::Select;
      use Image::Random;
+     use Image::Select;
 
      # Temporary directory for random images.
      my $tempdir = tempdir(CLEANUP => 1);
