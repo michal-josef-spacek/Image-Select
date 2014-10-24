@@ -17,7 +17,10 @@ META.yml
 README
 Select.pm
 SIGNATURE
+t/data/ex1/ex1.png
+t/data/ex1/ex2.png
 t/Image-Select/00-use.t
 t/Image-Select/01-version.t
 t/Image-Select/02-pod_coverage.t
 t/Image-Select/03-pod.t
+t/Image-Select/04-new.t
