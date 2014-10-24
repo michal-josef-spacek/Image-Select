@@ -46,6 +46,13 @@ sub new {
 		$self->_check_type($self->{'type'});
 	}
 
+	# Check path to images.
+	if (! defined $self->{'path_to_images'}
+		|| ! -d $self->{'path_to_images'}) {
+
+		err "Parameter 'path_to_images' is required.";
+	}
+
 	# Load images.
 	$self->{'_images_to_select'} = [
 		sort File::Find::Rule->file->magic(
@@ -221,6 +228,7 @@ Image::Select - Perl class for creating random image.
 =item * C<path_to_images>
 
  Path to images.
+ It is required.
  Default value is undef.
 
 =item * C<type>
@@ -257,6 +265,7 @@ Image::Select - Perl class for creating random image.
 
  new():
          No images.
+         Parameter 'path_to_images' is required.
          Image type '%s' doesn't supported.
          Class::Utils:
                  Unknown parameter '%s'.
