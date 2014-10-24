@@ -25,6 +25,9 @@ sub new {
 	# Debug.
 	$self->{'debug'} = 0;
 
+	# Loop.
+	$self->{'loop'} = 0;
+
 	# Path to images.
 	$self->{'path_to_images'} = undef;
 
@@ -74,7 +77,11 @@ sub create {
 	# Load next image.
 	my $i = Imager->new;
 	if ($self->{'_images_index'} > $#{$self->{'_images_to_select'}}) {
-		$self->{'_images_index'} = 0;
+		if ($self->{'loop'}) {
+			$self->{'_images_index'} = 0;
+		} else {
+			return;
+		}
 	}
 	my $file = $self->{'_images_to_select'}->[$self->{'_images_index'}];
 	if (! -r $file) {
@@ -206,6 +213,11 @@ Image::Select - Perl class for creating random image.
  Height of image.
  Default value is 1920.
 
+=item * C<loop>
+
+ Returns images in loop.
+ Default value is 0.
+
 =item * C<path_to_images>
 
  Path to images.
@@ -259,7 +271,7 @@ Image::Select - Perl class for creating random image.
          No file '%s'.
          Suffix '%s' doesn't supported.
 
-=head1 EXAMPLE
+=head1 EXAMPLE1
 
  # Pragmas.
  use strict;
@@ -298,6 +310,53 @@ Image::Select - Perl class for creating random image.
  unlink $temp;
 
  # Output:
+ # bmp
+
+=head1 EXAMPLE2
+
+ # Pragmas.
+ use strict;
+ use warnings;
+
+ # Modules.
+ use File::Spec::Functions qw(catfile);
+ use File::Temp qw(tempfile tempdir);
+ use Image::Select;
+ use Image::Random;
+
+ # Temporary directory for random images.
+ my $tempdir = tempdir(CLEANUP => 1);
+
+ # Create temporary images.
+ my $rand = Image::Random->new;
+ for my $i (1 .. 5) {
+         $rand->create(catfile($tempdir, $i.'.png'));
+ }
+
+ # Object.
+ my $obj = Image::Select->new(
+         'loop' => 0,
+         'path_to_images' => $tempdir,
+ );
+
+ # Temporary file.
+ my (undef, $temp) = tempfile();
+
+ # Create image.
+ while (my $type = $obj->create($temp)) {
+
+         # Print out type.
+         print $type."\n";
+ }
+
+ # Unlink file.
+ unlink $temp;
+
+ # Output:
+ # bmp
+ # bmp
+ # bmp
+ # bmp
  # bmp
 
 =head1 DEPENDENCIES
