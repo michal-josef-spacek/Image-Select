@@ -1,6 +1,7 @@
 0.02
  - Add error check for 'path_to_images' parameter.
  - Add tests.
+ - Fix dependencies.
  - Rewrite word "Suffix" to "Image type" in error message.
  - Sort modules in EXAMPLE sections in doc.
 
