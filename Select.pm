@@ -382,6 +382,10 @@ L<List::MoreUtils>.
 
 L<Image::Random>.
 
+=head1 REPOSITORY
+
+L<https://github.com/tupinek/Image-Select>
+
 =head1 AUTHOR
 
 Michal Špaček L<mailto:skim@cpan.org>

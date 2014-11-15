@@ -167,6 +167,9 @@ DEPENDENCIES
 SEE ALSO
     Image::Random.
 
+REPOSITORY
+    <https://github.com/tupinek/Image-Select>
+
 AUTHOR
     Michal Špaček <mailto:skim@cpan.org>
 
