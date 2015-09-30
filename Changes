@@ -1,5 +1,6 @@
 0.03
  - Add REPOSITORY section to doc.
+ - Fix test requires.
  - Improve LICENSE AND COPYRIGHT section in doc.
  - Improve SEE ALSO section in doc.
  - Move author tests to xt/ directory.
