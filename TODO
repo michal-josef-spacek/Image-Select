@@ -1,7 +1,9 @@
 TODO
 ====
 2. Testy.
-3.
+3. Prepinac pro neproporcionalni zmenu velikosti obrazku.
+   Imager->scale('type' => 'nonprop').
+4.
 
 Applied
 =======
