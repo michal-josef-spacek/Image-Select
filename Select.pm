@@ -380,7 +380,13 @@ L<List::MoreUtils>.
 
 =head1 SEE ALSO
 
-L<Image::Random>.
+=over
+
+=item L<Image::Random>
+
+Perl class for creating random image.
+
+=back
 
 =head1 REPOSITORY
 
