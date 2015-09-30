@@ -2,6 +2,8 @@ Changes
 examples/ex1.pl
 examples/ex2.pl
 inc/Module/Install.pm
+inc/Module/Install/AuthorRequires.pm
+inc/Module/Install/AuthorTests.pm
 inc/Module/Install/Base.pm
 inc/Module/Install/Can.pm
 inc/Module/Install/Fetch.pm
@@ -19,8 +21,8 @@ Select.pm
 SIGNATURE
 t/data/ex1/ex1.png
 t/data/ex1/ex2.png
-t/Image-Select/00-use.t
-t/Image-Select/01-version.t
-t/Image-Select/02-pod_coverage.t
-t/Image-Select/03-pod.t
-t/Image-Select/04-new.t
+t/Image-Select/01-use.t
+t/Image-Select/02-version.t
+t/Image-Select/03-new.t
+xt/Image-Select/01-pod_coverage.t
+xt/Image-Select/02-pod.t
