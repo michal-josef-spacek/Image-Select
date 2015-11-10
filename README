@@ -1,5 +1,5 @@
 NAME
-    Image::Select - Perl class for creating random image.
+    Image::Select - Selecting image from images directory.
 
 SYNOPSIS
      use Image::Select;

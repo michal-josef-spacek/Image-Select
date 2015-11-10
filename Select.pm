@@ -190,7 +190,7 @@ __END__
 
 =head1 NAME
 
-Image::Select - Perl class for creating random image.
+Image::Select - Selecting image from images directory.
 
 =head1 SYNOPSIS
 

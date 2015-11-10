@@ -1,5 +1,5 @@
 ---
-abstract: 'Perl class for creating image from images directory.'
+abstract: 'Selecting image from images directory.'
 author:
   - 'Michal Spacek <skim@cpan.org>'
 build_requires:
