@@ -386,6 +386,10 @@ L<List::MoreUtils>.
 
 Perl class for creating random image.
 
+=item L<Image::Select::Date>
+
+Selecting image from images directory by date.
+
 =back
 
 =head1 REPOSITORY
