@@ -1,21 +1,17 @@
-package Image::Select;
+package Image::Select::Array;
 
 # Pragmas.
+use base qw(Image::Select);
 use strict;
 use warnings;
 
 # Modules.
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
-use File::Basename qw(fileparse);
-use File::Find::Rule qw(:MMagic);
-use Imager;
-use List::MoreUtils qw(none);
 
 # Version.
 our $VERSION = 0.04;
 
-# Constructor.
 sub new {
 	my ($class, @params) = @_;
 
@@ -28,8 +24,8 @@ sub new {
 	# Loop.
 	$self->{'loop'} = 0;
 
-	# Path to images.
-	$self->{'path_to_images'} = undef;
+	# Image list.
+	$self->{'image_list'} = [];
 
 	# Image type.
 	$self->{'type'} = 'bmp';
@@ -46,138 +42,32 @@ sub new {
 		$self->_check_type($self->{'type'});
 	}
 
-	# Check path to images.
-	if (! defined $self->{'path_to_images'}
-		|| ! -d $self->{'path_to_images'}) {
+	# Check images array.
+	if (! defined $self->{'image_list'}
+		|| ref $self->{'image_list'} ne 'ARRAY') {
 
-		err "Parameter 'path_to_images' is required.";
+		err "Parameter 'image_list' must be reference to array ".
+			'with images.';
 	}
 
-	# Load images.
-	$self->{'_images_to_select'} = [
-		sort File::Find::Rule->file->magic(
-			'image/bmp',
-			'image/gif',
-			'image/jpeg',
-			'image/png',
-			'image/tiff',
-			'image/x-ms-bmp',
-			'image/x-portable-pixmap',
-			# XXX tga?
-			# XXX raw?
-			# XXX sgi?
-		)->in($self->{'path_to_images'}),
-	];
-	if (! @{$self->{'_images_to_select'}}) {
+	# Check images.
+	if (! @{$self->{'image_list'}}) {
 		err 'No images.';
 	}
+
+	# Check images path.
+	foreach my $image (@{$self->{'image_list'}}) {
+		if (! -r $image) {
+			err "Image '$image' doesn't readable.";
+		}
+	}
+
+	# Images to select.
+	$self->{'_images_to_select'} = $self->{'image_list'};
 	$self->{'_images_index'} = 0;
 
 	# Object.
 	return $self;
-}
-
-# Create image.
-sub create {
-	my ($self, $path) = @_;
-
-	# Load next image.
-	my $i = Imager->new;
-	if ($self->{'_images_index'} > $#{$self->{'_images_to_select'}}) {
-		if ($self->{'loop'}) {
-			$self->{'_images_index'} = 0;
-		} else {
-			return;
-		}
-	}
-	my $file = $self->{'_images_to_select'}->[$self->{'_images_index'}];
-	if (! -r $file) {
-		err "No file '$file'.";
-	}
-	my $ret = $i->read('file' => $file);
-	if (! $ret) {
-		err "Cannot read file '$file'.",
-			'Error', Imager->errstr;
-	}
-	$self->{'_images_index'}++;
-
-	# Get type.
-	my $suffix;
-	if (! defined $self->{'type'}) {
-
-		# Get suffix.
-		(my $name, undef, $suffix) = fileparse($path, qr/\.[^.]*/ms);
-		$suffix =~ s/^\.//ms;
-
-		# Jpeg.
-		if ($suffix eq 'jpg') {
-			$suffix = 'jpeg';
-		}
-
-		# Check type.
-		$self->_check_type($suffix);
-	} else {
-		$suffix = $self->{'type'};
-	}
-
-	# Scale.
-	my $new_i = $i->scale(
-		'xpixels' => $self->{'width'},
-		'ypixels' => $self->{'height'},
-	);
-	if (! $new_i) {
-		err "Cannot resize image from file '$file'.",
-			'Error', Imager->errstr;
-	}
-
-	# Save.
-	if ($self->{'debug'}) {
-		print "Path: $path\n";
-	}
-	$ret = $new_i->write(
-		'file' => $path,
-		'type' => $suffix,
-	);
-	if (! $ret) {
-		err "Cannot write file to '$path'.",
-			'Error', Imager->errstr;
-	}
-
-	return $suffix;
-}
-
-# Set/Get image sizes.
-sub sizes {
-	my ($self, $width, $height) = @_;
-	if ($width && $height) {
-		$self->{'width'} = $width;
-		$self->{'height'} = $height;
-	}
-	return ($self->{'width'}, $self->{'height'});
-}
-
-# Set/Get image type.
-sub type {
-	my ($self, $type) = @_;
-	if ($type) {
-		$self->_check_type($type);
-		$self->{'type'} = $type;
-	}
-	return $self->{'type'};
-}
-
-# Check supported image type.
-sub _check_type {
-	my ($self, $type) = @_;
-	
-	# Check type.
-	if (none { $type eq $_ } ('bmp', 'gif', 'jpeg', 'png',
-		'pnm', 'raw', 'sgi', 'tga', 'tiff')) {
-
-		err "Image type '$type' doesn't supported.";
-	}
-
-	return;
 }
 
 1;
@@ -190,12 +80,12 @@ __END__
 
 =head1 NAME
 
-Image::Select - Selecting image from images directory.
+Image::Select::Array - Selecting image from list with checking.
 
 =head1 SYNOPSIS
 
- use Image::Select;
- my $obj = Image::Select->new(%parameters);
+ use Image::Select::Array;
+ my $obj = Image::Select::Array->new(%parameters);
  my $type = $obj->create($output_path);
  my ($width, $height) = $obj->sizes($new_width, $new_height);
  my $type = $obj->type($new_type);
@@ -225,11 +115,11 @@ Image::Select - Selecting image from images directory.
  Returns images in loop.
  Default value is 0.
 
-=item * C<path_to_images>
+=item * C<image_list>
 
- Path to images.
+ List of images in array reference.
  It is required.
- Default value is undef.
+ Default value is [].
 
 =item * C<type>
 
@@ -265,8 +155,9 @@ Image::Select - Selecting image from images directory.
 
  new():
          No images.
-         Parameter 'path_to_images' is required.
+         Image '%s' doesn't readable.
          Image type '%s' doesn't supported.
+         Parameter 'image_list' must be reference to array with images.
          Class::Utils:
                  Unknown parameter '%s'.
 
@@ -290,20 +181,23 @@ Image::Select - Selecting image from images directory.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;
- use Image::Select;
+ use Image::Select::Array;
 
  # Temporary directory to random images.
  my $tempdir = tempdir(CLEANUP => 1);
 
  # Create temporary images.
  my $rand = Image::Random->new;
+ my @images;
  for my $i (1 .. 5) {
-         $rand->create(catfile($tempdir, $i.'.png'));
+         my $image = catfile($tempdir, $i.'.png');
+         $rand->create($image);
+         push @images, $image;
  }
 
  # Object.
- my $obj = Image::Select->new(
-         'path_to_images' => $tempdir,
+ my $obj = Image::Select::Array->new(
+         'image_list' => \@images,
  );
 
  # Temporary file.
@@ -331,21 +225,24 @@ Image::Select - Selecting image from images directory.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;
- use Image::Select;
+ use Image::Select::Array;
 
  # Temporary directory for random images.
  my $tempdir = tempdir(CLEANUP => 1);
 
  # Create temporary images.
  my $rand = Image::Random->new;
+ my @images;
  for my $i (1 .. 5) {
+         my $image = catfile($tempdir, $i.'.png');
          $rand->create(catfile($tempdir, $i.'.png'));
+         push @images, $image;
  }
 
  # Object.
- my $obj = Image::Select->new(
+ my $obj = Image::Select::Array->new(
+         'image_list' => \@images,
          'loop' => 0,
-         'path_to_images' => $tempdir,
  );
 
  # Temporary file.
@@ -372,11 +269,7 @@ Image::Select - Selecting image from images directory.
 
 L<Class::Utils>,
 L<Error::Pure>,
-L<File::Basename>,
-L<File::Find::Rule>,
-L<File::Find::Rule::MMagic>,
-L<Imager>,
-L<List::MoreUtils>.
+L<Image::Select>.
 
 =head1 SEE ALSO
 
@@ -386,9 +279,9 @@ L<List::MoreUtils>.
 
 Perl class for creating random image.
 
-=item L<Image::Select::Array>
+=item L<Image::Select>
 
-Selecting image from list with checking.
+Selecting image from images directory.
 
 =item L<Image::Select::Date>
 
@@ -408,7 +301,7 @@ L<http://skim.cz>
 
 =head1 LICENSE AND COPYRIGHT
 
- © 2014-2015 Michal Špaček
+ © 2015 Michal Špaček
  BSD 2-Clause License
 
 =head1 VERSION

@@ -168,6 +168,9 @@ SEE ALSO
     Image::Random
         Perl class for creating random image.
 
+    Image::Select::Array
+        Selecting image from list with checking.
+
     Image::Select::Date
         Selecting image from images directory by date.
 

@@ -1,4 +1,5 @@
 0.04
+ - Add Image::Select::Array module.
  - Add Image::Select::Date to SEE ALSO section in doc.
  - Fix and improve ABSTRACT.
 
