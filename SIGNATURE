@@ -14,15 +14,18 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 f57fd4f15698ff45c804e85658fe196b78ec9b15 Changes
+SHA1 96475e549836005fbcb3026cd7192abfd5e9cf00 Changes
 SHA1 507a10efa92555ddddfbe72be27964d9e3eef80f LICENSE
-SHA1 97acccac4c1ec563270d894eac90856d9bedcd48 MANIFEST
-SHA1 58b11f81ec6a392cb4f74f748ec5655904b13f22 META.yml
-SHA1 edd76099c6400ef4555a27570c0eb428f484d020 Makefile.PL
-SHA1 8e2f3322f5e0268bde212d624908ca797a084d6b README
-SHA1 9e045bacb864b1233f7b2dae2e310e253e9fd17e Select.pm
+SHA1 89817310e28650a0acf67bc94b9cf98782b64c72 MANIFEST
+SHA1 6bb97223fb97421c3bc37ff8230a6f74db072a2d META.yml
+SHA1 402cc2a59677141a207dfcebff0b0c453e290811 Makefile.PL
+SHA1 922e6029a222c4c5227f63b16eba4b2aac263c60 README
+SHA1 78d9232e5fa4c91bd34dba93c2eb7e1ccf561877 Select.pm
+SHA1 6e4afebef1913c96969900ad433fa71e12490b02 Select/Array.pm
 SHA1 fda51c44137c1ece7dc81175b6e5004d0411edd8 examples/ex1.pl
 SHA1 37b86fafbe0c9ae2304e2ac5044dd6ca5bd4f8b3 examples/ex2.pl
+SHA1 6538a836609b77b1ec6ff620026132decf1f9f5d examples/ex3.pl
+SHA1 434d785bca14d89feb52e4e0eb780d6524149397 examples/ex4.pl
 SHA1 bce3c51bb369419603298064b78e14077b93af66 inc/Module/Install.pm
 SHA1 5c1a9d3a384a5262cbc105ab76d446047904c7fa inc/Module/Install/AuthorRequires.pm
 SHA1 d001b4b9a48395a8c4134b234a0e1789138427c5 inc/Module/Install/AuthorTests.pm
@@ -34,21 +37,25 @@ SHA1 2e33e87882d60db3913da6284dd5295e5315e18a inc/Module/Install/Metadata.pm
 SHA1 79f5b4199f622e8b05aac266b0c39f6a85bb303f inc/Module/Install/ReadmeFromPod.pm
 SHA1 c830b819e61bda5eca077c6291293bba61b3b9f2 inc/Module/Install/Win32.pm
 SHA1 cb52b9d6f88d512d448a6f35ed0af0d1201a134b inc/Module/Install/WriteAll.pm
+SHA1 e0fb989d6706d86ceb3593becf5ad19201ee799e t/Image-Select-Array/01-use.t
+SHA1 cdd319084f7d79c5a96cf405d58d19964d1c1c60 t/Image-Select-Array/02-version.t
 SHA1 bfb089bdeb603eb51a920641497ee13b6c277a94 t/Image-Select/01-use.t
-SHA1 212385fc9bc653b8e90e29e8cd45c58382a40fee t/Image-Select/02-version.t
+SHA1 afe211f8cef2fbf1603b5917c694d336ef882f7c t/Image-Select/02-version.t
 SHA1 d575a0f673ae20f9a4cbcb98390e1b2cfa128733 t/Image-Select/03-new.t
 SHA1 080e5caaaa9e615e0472759416a08cd622889b89 t/data/ex1/ex1.png
 SHA1 7b450a9c39ffc4b37846f00c88f83320d86bdc7e t/data/ex1/ex2.png
+SHA1 d796a4d93f47f7e1ca959db90d7adf76df2e4646 xt/Image-Select-Array/01-pod_coverage.t
+SHA1 8517013cd5d240e13303c3857abb2fcf416bacb8 xt/Image-Select-Array/02-pod.t
 SHA1 486d281c60cede80af7a1b12b103d8f740996277 xt/Image-Select/01-pod_coverage.t
 SHA1 7b4ab6d0b98fca405b3515c365c00dff7bb7c581 xt/Image-Select/02-pod.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1
 
-iQEcBAEBAgAGBQJWC/GkAAoJEJe+XXKaIuTleRIH/1XVXc6DGiFgU12M528gRyS/
-lUo5qSnws+dIpwpJXdqfYATLCoxs1Q5vjQpxOhIsfQpWsnefZzHNpowSLlOTZk/v
-fSQUxMNi0xN+liWMkQyoer/vCGmVPRrXgnMfHzZBCWJ+xeWZUNTHFDBm3NKqgczh
-Z4X/cEMwEI3I8/nphycSAfv4ecwhlw0wUW3Yo6c5yUnPSaEMAv3R8Mr7xroR4dBx
-UI0ENt/aKhWl3ILlq86S7frWaaMpp7SSy/Ndd5Weyrik7fQGUfoNpOS8xOwFQE9V
-S2AGZVymOfauxbEu8BsYi6sy4fxA1/H6mrJcKYrWa8K5jWKguLBZ09AM+NHepUc=
-=5bOb
+iQEcBAEBAgAGBQJWTauNAAoJEJe+XXKaIuTl7n4H/3DezTLlV2UJd29OpY43/PKN
+6FLZbxTil2Y7b4gR0Qv4gh5LkFt8vQXQtXYkY4NtYLGqeFz2bIXJXF1pHiA9ftUB
+fvA9Mf+hRTUrjtFcGnc7ejgB0L+YldxANi0JuyFMBCZmodlnUY9bYtEhmcohP2cr
+r3XXf76EHztV+sktPpOHhugAbQuZBC/fG1PhqnbfmM581WOeX73gNxrcu0r386dY
+21rdNlmAhky17QtnZ/bYMG9RryZJ/3eXn/mBchoi/B892Xa2gbhURRo77TAgWYq0
+0qDIm2CLmB/7CU+cLgLhO5eJZ1veDjDFq9I9+9TIR9ie2E5F+WGW0qPOKLtVZl4=
+=KJcZ
 -----END PGP SIGNATURE-----
