@@ -283,10 +283,6 @@ Perl class for creating random image.
 
 Selecting image from images directory.
 
-=item L<Image::Select::Date>
-
-Selecting image from images directory by date.
-
 =back
 
 =head1 REPOSITORY
