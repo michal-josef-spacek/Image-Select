@@ -1,5 +1,6 @@
 0.05
  - Add Image::Select::Date to SEE ALSO section in doc.
+ - Update Module::Install to 1.19 version.
 
 0.04 2015-11-19T11:59:09+01:00
  - Add Image::Select::Array module.
