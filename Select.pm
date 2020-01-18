@@ -391,7 +391,7 @@ Selecting image from images directory by date.
 
 =head1 REPOSITORY
 
-L<https://github.com/tupinek/Image-Select>
+L<https://github.com/michal-josef-spacek/Image-Select>
 
 =head1 AUTHOR
 
