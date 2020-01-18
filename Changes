@@ -2,6 +2,7 @@
  - Add Image::Select::Date to SEE ALSO section in doc.
  - Fix Makefile.PL fails with no '.' in @INC.
  - Update Module::Install to 1.19 version.
+ - Update author name.
 
 0.04 2015-11-19T11:59:09+01:00
  - Add Image::Select::Array module.
