@@ -7,7 +7,7 @@ use warnings;
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 
-our $VERSION = 0.05;
+our $VERSION = 0.06;
 
 sub new {
 	my ($class, @params) = @_;
@@ -299,6 +299,6 @@ L<http://skim.cz>
 
 =head1 VERSION
 
-0.05
+0.06
 
 =cut
