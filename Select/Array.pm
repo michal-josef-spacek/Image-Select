@@ -1,15 +1,12 @@
 package Image::Select::Array;
 
-# Pragmas.
 use base qw(Image::Select);
 use strict;
 use warnings;
 
-# Modules.
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 
-# Version.
 our $VERSION = 0.05;
 
 sub new {
@@ -173,11 +170,9 @@ Image::Select::Array - Selecting image from list with checking.
 
 =head1 EXAMPLE1
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;
@@ -217,11 +212,9 @@ Image::Select::Array - Selecting image from list with checking.
 
 =head1 EXAMPLE2
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;

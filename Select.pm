@@ -1,10 +1,8 @@
 package Image::Select;
 
-# Pragmas.
 use strict;
 use warnings;
 
-# Modules.
 use Class::Utils qw(set_params);
 use Error::Pure qw(err);
 use File::Basename qw(fileparse);
@@ -12,7 +10,6 @@ use File::Find::Rule qw(:MMagic);
 use Imager;
 use List::MoreUtils qw(none);
 
-# Version.
 our $VERSION = 0.05;
 
 # Constructor.
@@ -282,11 +279,9 @@ Image::Select - Selecting image from images directory.
 
 =head1 EXAMPLE1
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;
@@ -323,11 +318,9 @@ Image::Select - Selecting image from images directory.
 
 =head1 EXAMPLE2
 
- # Pragmas.
  use strict;
  use warnings;
 
- # Modules.
  use File::Spec::Functions qw(catfile);
  use File::Temp qw(tempfile tempdir);
  use Image::Random;

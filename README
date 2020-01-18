@@ -75,11 +75,9 @@ ERRORS
              Image type '%s' doesn't supported.
 
 EXAMPLE1
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use File::Spec::Functions qw(catfile);
      use File::Temp qw(tempfile tempdir);
      use Image::Random;
@@ -115,11 +113,9 @@ EXAMPLE1
      # bmp
 
 EXAMPLE2
-     # Pragmas.
      use strict;
      use warnings;
 
-     # Modules.
      use File::Spec::Functions qw(catfile);
      use File::Temp qw(tempfile tempdir);
      use Image::Random;
